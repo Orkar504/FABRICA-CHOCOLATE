@@ -58,7 +58,7 @@ int main()
 		return -1;
 	}
 
-	//Creacion de semaforos
+	//Creacion de semaforos de manera automatica
 	for(int i = 0; i < cantidad_sem; i++) {
 		arg.val = 1;
 		r = semctl(sem, i, SETVAL, arg);
@@ -94,12 +94,13 @@ int main()
 
 		maquinaLibre = (maquinaLibre+1)%N_Maquinas;
 		chocolateroLibre =(chocolateroLibre+1)%chocolateros_en_fabrica;
+		
 
 	}
 	return 0;
 }
 
-void maquina (int operacion, int maquina,int semaforo)
+void maquina (int operacion, int machine,int semaforo)
 {
 
 	int r;
@@ -112,29 +113,110 @@ void maquina (int operacion, int maquina,int semaforo)
 	{
 	case 1/* encender maquina */:
 		/* code */
+		printf("Maquina %i: Encendiendose\n",machine);
+		printf("Maquina %i: activando proceso\n",machine);
+		maquina(2,machine,semaforo);
 		
 		break;
 	case 2/* Tambor */:
 		/* code */
-			printf("Maquina %i: 1. Tambor \n", maquina);
-			printf("Maquina %i: 1.1 Mezclado homogeneo \n", maquina);
-			printf("Maquina %i: 1.1.1 Carga de ingredientes \n", maquina);
+			printf("Maquina %i: Tambor \n", machine);
+			printf("Maquina %i:  Mezclado homogeneo \n", machine);
+			printf("Maquina %i:  Activacion de mezclado\n",machine);
+			printf("Maquina %i:  1 Inicio del motor y las aspas\n",machine);
+			printf("Maquina %i:  Aire\n", machine);
+			printf("Maquina %i: .1 Regulacion de la entrada de aire\n", machine);
+			printf("Maquina %i: .2 Control de mezcla de aire\n", machine);
+			printf("Maquina %i:  Refinando\n", machine);
+			printf("Maquina %i: .1 Ajuste de intensidad de refinado\n", machine);
+			printf("Maquina %i: .2 Control del proceso de refinado\n\n", machine);
+			maquina(3,machine,semaforo);
         
 		break;
-	case 3/* Protocólo de limpieza */:
+	case 3/* Batidora */:
 
-		/* code */
+			printf("Maquina %i:  Batidora\n", machine);
+			printf("Maquina %i:  Aspas\n" , machine);				
+			printf("Maquina %i:  Diseño y mantenimiento\n", machine);
+			printf("Maquina %i:  Inspeccion periodica de aspas\n", machine);
+			printf("Maquina %i:  Control de velocidad\n", machine);
+			printf("Maquina %i:  Ajuste de velocidad deseada\n", machine);
+			printf("Maquina %i:  Tiempo de mezclado\n", machine);
+			printf("Maquina %i:  Establecimiento del tiempo de mezclado\n", machine);	
+			printf("Maquina %i:  Temporizacion de los intervalos del batido\n\n", machine);
+			maquina(4,machine,semaforo);
 		
 		break;
-	case 4:
+	case 4/*Motor*/:
 	{
+		printf("Maquina %i: 3. Motor\n", machine);
+		printf("Maquina %i: 3.1 Fuente de energia\n", machine);
+		printf("Maquina %i: 3.1.2 Suministro de energia estable\n", machine);
+		printf("Maquina %i: 3.2 Encendido/Apagado\n", machine);
+		printf("Maquina %i: 3.2.1 Control del encendido y apagado\n", machine);
+		printf("Maquina %i: 3.2.2 Disposicion de interruptores\n", machine);
+		printf("Maquina %i: 3.3 Valvula\n", machine);
+		printf("Maquina %i: 3.3.1 Control de la apertura y cierre de valvulas\n", machine);
+		printf("Maquina %i: 3.3.2 Regulacion del flujo de liquido\n", machine);
+		printf("Maquina %i: 3.4 Sensor del motor\n", machine);
+		printf("Maquina %i: 3.4.1 Instlacion del sensor\n", machine);
+		printf("Maquina %i: 3.4.2 Monitoreo de vibraciones y temperatura\n", machine);
+		printf("Maquina %i: 3.5 Mantenimiento\n", machine);
+		printf("Maquina %i: 3.5.1 Planificacion y ejecuccion del matenimiento\n", machine);
+		printf("Maquina %i: 3.5.1.1 Programacion de mantenimientos periodicos\n", machine);
+		printf("Maquina %i: 3.5.1.2 Asignacion de responsabilidaddes para el mantenimiento\n", machine);
+		printf("Maquina %i: 3.5.1.3 Seguimiento y registro de trabajos realizados\n", machine);
+		printf("Maquina %i: 3.5.1.4 Evaluacion de necesidad y actualizacion\n\n", machine);
+		maquina(5,machine,semaforo);
 
 	}
-	case 5/* Almacenar */:
+	case 5/* Mantenimiento */:
 		/* code */
+	
+		printf("Maquina %i: 4. Mantenimiento\n", machine);
+		printf("Maquina %i: 4.1 Lubricación de partes móviles\n", machine);
+		printf("Maquina %i: 4.1.1 Identificación de puntos de lubricación\n", machine);
+		printf("Maquina %i: 4.1.2 Aplicación de lubricantes adecuados\n", machine);
+		printf("Maquina %i: 4.2 Inspección\n", machine);
+		printf("Maquina %i: 4.2.1 Examen visual de componentes\n", machine);
+		printf("Maquina %i: 4.2.2 Detección de desgaste o daños\n", machine);
+		printf("Maquina %i: 4.2.2.1 Utilización de herramientas de medición\n", machine);
+		printf("Maquina %i: 4.2.2.2 Evaluación de la necesidad de reemplazo o reparación\n", machine);
+		printf("Maquina %i: 4.3 Limpieza de residuos\n", machine);
+		printf("Maquina %i: 4.3.1 Remoción de residuos y partículas\n", machine);
+		printf("Maquina %i: 4.3.2 Limpieza de áreas de difícil acceso\n", machine);
+		maquina(6,machine,semaforo);
 
 		break;
 	
+
+	case 6/* Mantenimiento */:
+		/* code */
+	
+		printf("Maquina %i: 5.3.3.1 Recepción y revisión de la alerta\n", machine);
+		printf("Maquina %i: 5.3.3.2 Solución de problemas identificados\n", machine);
+		printf("Maquina %i: 5.3.4 Vertido de ingrediente especial\n", machine);
+		printf("Maquina %i: 5.3.4.1 Identificación de densidad inadecuada\n", machine);
+		printf("Maquina %i: 5.3.4.2 Preparación y vertido del ingrediente especial\n\n", machine);
+		maquina(7,machine,semaforo);
+		break;
+	
+	case 7 /*Sensor de Temperatura*/:
+
+		printf("Maquina %i: 6. Sensor de temperatura\n", machine);
+		printf("Maquina %i: 6.1 Ajuste de temperatura\n", machine);
+		printf("Maquina %i: 6.1.1 Configuración de la temperatura deseada\n", machine);
+		printf("Maquina %i: 6.2 Monitoreo continuo\n", machine);
+		printf("Maquina %i: 6.2.1 Lecturas constantes de temperatura\n", machine);
+		maquina(8,machine,semaforo);
+		break;
+	case 8/*Sensor de densidad*/:
+		printf("machine %i: 7. Sensor de densidad\n", machine);
+		printf("machine %i: 7.1 Calibrar sensor\n", machine);
+		printf("machine %i: 7.1.1 Ajuste inicial del sensor\n", machine);
+		printf("machine %i: 7.2 Medición de densidad\n", machine);
+		printf("machine %i: 7.2.1 Registro de mediciones de densidad\n", machine);
+		break;
 	default:
 		break;
 	}
@@ -197,6 +279,8 @@ void chocolatero (int operacion, int chocolatero, int orden,int machine,int sema
 		printf("Chocolatero %i : Decoración\n", chocolatero);
 		printf("Chocolatero %i : Eligiendo el tipo de decoración\n", chocolatero);
 		printf("Chocolatero %i : Aplicando la decoración\n", chocolatero);
+		printf("Chocolatero %i : Seleccionando una muestra para cata\n", chocolatero);
+		printf("Chocolatero %i :  Enviando a Catador\n", chocolatero);
         
 		break;
 	case 3/* Protocólo de limpieza */:
@@ -243,9 +327,7 @@ void chocolatero (int operacion, int chocolatero, int orden,int machine,int sema
             printf("Chocolatero %i : Desinfectando los moldes\n", chocolatero);
             printf("Chocolatero %i : Secando los moldes\n", chocolatero);
             printf("Chocolatero %i : . Realizando una inspección para que los moldes cumplan las regulaciones de salud\n", chocolatero );
-			printf("Chocolatero %i : Seleccionando una muestra para cata\n", chocolatero);
-			printf("Chocolatero %i :  Enviando a Catador\n", chocolatero);
-					/* Enviar a catador */
+		
 		break;
 	case 5/* Almacenar */:
 		/* code */
